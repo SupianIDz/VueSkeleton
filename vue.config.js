@@ -1,5 +1,5 @@
-const {resolve} = require("path");
-const {defineConfig} = require('@vue/cli-service');
+const { resolve } = require("path");
+const { defineConfig } = require('@vue/cli-service');
 
 module.exports = defineConfig({
     transpileDependencies: true,
@@ -16,7 +16,7 @@ module.exports = defineConfig({
             cert: process.env.DEV_SERVER_CRT
         },
         allowedHosts: [
-            process.env.APP_URL.replace(/^https?:\/\//, ''),
+            process.env.VUE_APP_URL.replace(/^https?:\/\//, ''),
         ]
     },
     configureWebpack: {
