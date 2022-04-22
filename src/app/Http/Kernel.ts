@@ -9,6 +9,6 @@ export class Kernel extends BaseKernel
      */
     public async bootstrap() : Promise<void>
     {
-        //
+        return super.bootstrap();
     }
 }

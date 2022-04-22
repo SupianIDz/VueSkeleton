@@ -8,6 +8,7 @@ import AppComponent from "@/system/Foundation/Components/App.vue";
  */
 import "@/app/Service/ServiceWorker";
 import { Kernel } from "@/app/Http/Kernel";
+import { Handler } from "@/app/Error/Handler";
 
 /**
  * Bootstrap the application
@@ -18,6 +19,15 @@ const app = new App(createApp(
 
 const kernel = new Kernel(app);
 
+/**
+ * Bind Important Classes
+ */
+app.instance('Kernel', kernel);
+app.instance('ErrorHandler', new Handler(app))
+
+/**
+ * Bootstrap The Application
+ */
 kernel.bootstrap().then(() => {
     app.mount('#app');
 });

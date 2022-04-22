@@ -3,8 +3,9 @@ import { TSyringe } from "@/system/Container/TSyringe";
 
 export default class App extends TSyringe
 {
+
     /**
-     * @param vue
+     * @param {App} vue
      */
     public constructor(public vue : VueApp)
     {
@@ -17,10 +18,18 @@ export default class App extends TSyringe
     }
 
     /**
-     * @param root
+     * @param {string} root
      */
     public mount(root : string)
     {
         this.vue.mount(root);
+    }
+
+    /**
+     * @return {boolean}
+     */
+    public debug() : boolean
+    {
+        return process.env.VUE_APP_DEBUG;
     }
 }
