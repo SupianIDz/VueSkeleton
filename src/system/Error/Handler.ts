@@ -1,4 +1,5 @@
 import App from "@/system/App";
+import consola from "consola";
 import { ComponentPublicInstance } from "vue";
 import { inject, singleton } from "tsyringe";
 
@@ -20,7 +21,10 @@ export class Handler
      */
     public warn(message : string, instance : ComponentPublicInstance | null, trace : string) : void
     {
-        //
+        consola.warn(message, {
+            component: instance,
+            trace: trace,
+        });
     }
 
     /**
@@ -30,6 +34,10 @@ export class Handler
      */
     public error(error : unknown, instance : ComponentPublicInstance | null, info : string) : void
     {
-        //
+        consola.error('Error', {
+            error: error,
+            component: instance,
+            info: info,
+        });
     }
 }
