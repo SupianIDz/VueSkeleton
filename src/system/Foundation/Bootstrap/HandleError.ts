@@ -1,10 +1,10 @@
-import { inject, injectable } from "tsyringe";
 import App from "@/system/App";
-import { Bootstrap } from "@/system/Foundation/Bootstrap/Bootstrap";
+import { inject, injectable } from "tsyringe";
+import { Bootstrapper } from "@/system/Contract/Bootstrapper";
 import { Handler } from "@/system/Error/Handler";
 
 @injectable()
-export default class HandleError implements Bootstrap
+export default class HandleError implements Bootstrapper
 {
     /**
      * @param app
@@ -14,7 +14,10 @@ export default class HandleError implements Bootstrap
         //
     }
 
-    public bootstrap() : void
+    /**
+     * @returns {Promise<any>}
+     */
+    public async bootstrap() : Promise<any>
     {
         const handler = this.app.make<Handler>('ErrorHandler');
 

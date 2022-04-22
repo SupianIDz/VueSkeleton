@@ -1,6 +1,6 @@
 import { inject, singleton } from "tsyringe";
 import App from "@/system/App";
-import { Bootstrap } from "@/system/Foundation/Bootstrap/Bootstrap";
+import { Bootstrapper } from "@/system/Contract/Bootstrapper";
 
 @singleton()
 export class Kernel
@@ -27,7 +27,7 @@ export class Kernel
     {
         this.bootstrappers.map(async (bootstrapper) => {
             await import(`@/system/Foundation/Bootstrap/${bootstrapper}`).then(async (module) => {
-                this.app.make<Bootstrap>(module.default).bootstrap();
+                await this.app.make<Bootstrapper>(module.default).bootstrap();
             });
         });
     }
