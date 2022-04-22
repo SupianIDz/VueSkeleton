@@ -1,0 +1,15 @@
+# Code Editor
+.idea
+.vscode
+
+# PROJECT
+dist
+yarn.lock
+node_modules
+
+# ENV
+.env
+.env.backup
+
+# LOG
+*.log
