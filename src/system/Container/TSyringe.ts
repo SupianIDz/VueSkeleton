@@ -6,7 +6,7 @@ export class TSyringe
      * @param token
      * @param instance
      */
-    public instance<T>(token : InjectionToken<T>, instance : T) : DependencyContainer
+    public bind<T>(token : InjectionToken<T>, instance : T) : DependencyContainer
     {
         return container.registerInstance(token, instance);
     }
@@ -17,7 +17,7 @@ export class TSyringe
     public instances(instances : { [token : string] : any }) : void
     {
         for (const [token, instance] of Object.entries(instances)) {
-            this.instance(token, instance);
+            this.bind(token, instance);
         }
     }
 

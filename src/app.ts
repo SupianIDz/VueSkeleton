@@ -22,8 +22,8 @@ const kernel = new Kernel(app);
 /**
  * Bind Important Classes
  */
-app.instance('Kernel', kernel);
-app.instance('ErrorHandler', new Handler(app))
+app.bind('Kernel', kernel);
+app.bind('ErrorHandler', new Handler(app))
 
 /**
  * Bootstrap The Application

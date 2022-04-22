@@ -73,11 +73,11 @@ describe('Dependency Injection', () => {
         expect(container.make(FooClass).getQux()).toBe('bar');
     });
 
-    it('should resolve a class instance', () => {
+    it('should resolve a class binding', () => {
         const baz = new BazClass();
         baz.setQux('qux');
 
-        container.instance('baz', baz);
+        container.bind('baz', baz);
 
         expect(container.make('baz')).toBeInstanceOf(BazClass);
         expect(container.make<BazClass>('baz').getQux()).toBe('qux');
