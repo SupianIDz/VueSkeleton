@@ -10,6 +10,7 @@ export class Kernel
      */
     private bootstrappers : Array<string> = [
         'HandleError',
+        'ServiceProvider',
     ];
 
     /**
