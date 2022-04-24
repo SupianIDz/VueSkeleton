@@ -28,6 +28,6 @@ app.bind('ErrorHandler', new Handler(app))
 /**
  * Bootstrap The Application
  */
-kernel.bootstrap().then(() => {
-    app.mount('#app');
+kernel.handle().then(() => {
+    //
 });

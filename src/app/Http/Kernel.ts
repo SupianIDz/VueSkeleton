@@ -5,10 +5,16 @@ import { singleton } from "tsyringe";
 export class Kernel extends BaseKernel
 {
     /**
+     * @type {string}
+     * @protected
+     */
+    protected root = '#app';
+
+    /**
      * @returns {Promise<void>}
      */
-    public async bootstrap() : Promise<void>
+    public async handle() : Promise<void>
     {
-        return super.bootstrap();
+        return super.handle();
     }
 }

@@ -1,6 +1,7 @@
-import { singleton } from "tsyringe";
+import App from "@/system/App";
+import { inject, singleton } from "tsyringe";
 import { Route } from "@/system/Router/Route";
-import { RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHistory, Router as VueRouter, RouteRecordRaw } from "vue-router";
 
 @singleton()
 export class Router
@@ -10,6 +11,14 @@ export class Router
      * @protected
      */
     protected records : Array<Route> = [];
+
+    /**
+     * @param {App} app
+     */
+    public constructor(@inject('App') protected app : App)
+    {
+        //
+    }
 
     /**
      * @param {Route} route
@@ -51,10 +60,30 @@ export class Router
     }
 
     /**
+     * @returns {Router}
+     */
+    public create() : VueRouter
+    {
+        const router = createRouter({
+            routes: this.build(),
+            history: createWebHistory(),
+        });
+
+        this.app.use(router);
+
+        router.isReady().then(() => {
+            this.app.mount();
+        });
+
+        return router;
+    }
+
+    /**
      * @returns {void}
      */
     public reset() : void
     {
         this.records = [];
     }
+
 }

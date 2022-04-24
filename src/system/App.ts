@@ -1,8 +1,10 @@
-import { App as VueApp } from "vue";
+import { App as VueApp, Plugin } from "vue";
 import { TSyringe } from "@/system/Container/TSyringe";
 
 export default class App extends TSyringe
 {
+
+    protected $root = '#app';
 
     /**
      * @param {App} vue
@@ -20,9 +22,27 @@ export default class App extends TSyringe
     /**
      * @param {string} root
      */
-    public mount(root : string)
+    public root(root : string) : void
     {
-        this.vue.mount(root);
+        this.$root = root;
+    }
+
+    /**
+     * @param   {Plugin} plugin
+     * @param   {any} options
+     * @returns {App}
+     */
+    public use(plugin : Plugin, ...options : any) : VueApp
+    {
+        return this.vue.use(plugin, options);
+    }
+
+    /**
+     * @param {string} root
+     */
+    public mount(root? : string)
+    {
+        this.vue.mount(root ?? this.$root);
     }
 
     /**
@@ -32,4 +52,5 @@ export default class App extends TSyringe
     {
         return process.env.VUE_APP_DEBUG;
     }
+
 }
